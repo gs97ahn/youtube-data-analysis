@@ -18,3 +18,5 @@ class WebRequest:
                 print('ERROR: failed to scrape', target_address)
                 print('RETRYING IN', request_attempt, 'seconds')
                 time.sleep(request_attempt)
+        print('ERROR: scraping fail, try again later')
+        exit(1)
