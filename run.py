@@ -1,12 +1,12 @@
 from config.config import Config
 from scraper.youtube_channel_scraper import YoutubeChannelScrapper
-from utils.data_formatter import DataFormatter
+from utils.data_format import DataFormat
 
 import os
 
 config = Config()
 youtube_channel_scrapper = YoutubeChannelScrapper()
-data_formatter = DataFormatter()
+data_format = DataFormat()
 
 
 def web_scrape_youtube_channel_statistics_and_info():
@@ -47,12 +47,12 @@ def web_scrape_youtube_channel_statistics_and_info():
                     )
                 )
                 print(youtube_channels_statistics_csv[status][category][rank])
-            data_formatter.csv_saver(
+            data_format.csv_saver(
                 os.path.join(status_csv_folder_path, config.youtube_channel_statistics_csv_file_name[status][category]),
                 config.youtube_channel_statistics_header,
                 youtube_channels_statistics_csv[status][category]
             )
-            data_formatter.txt_saver(
+            data_format.txt_saver(
                 os.path.join(status_html_folder_path, config.youtube_channel_statistics_html_file_name[status][category]),
                 youtube_channels_statistics_txt[status][category]
             )
