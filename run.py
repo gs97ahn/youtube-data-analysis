@@ -10,43 +10,14 @@ data_formatter = DataFormatter()
 
 
 def web_scrape_youtube_channel_statistics_and_info():
-    youtube_channels_statistics_csv = {
-        config.status[0]: {
-            config.categories[0]: [],
-            config.categories[1]: [],
-            config.categories[2]: [],
-            config.categories[3]: [],
-            config.categories[4]: [],
-            config.categories[5]: []
-        },
-        config.status[1]: {
-            config.categories[0]: [],
-            config.categories[1]: [],
-            config.categories[2]: [],
-            config.categories[3]: [],
-            config.categories[4]: [],
-            config.categories[5]: []
-        }
-    }
-
-    youtube_channels_statistics_txt = {
-        config.status[0]: {
-            config.categories[0]: [],
-            config.categories[1]: [],
-            config.categories[2]: [],
-            config.categories[3]: [],
-            config.categories[4]: [],
-            config.categories[5]: []
-        },
-        config.status[1]: {
-            config.categories[0]: [],
-            config.categories[1]: [],
-            config.categories[2]: [],
-            config.categories[3]: [],
-            config.categories[4]: [],
-            config.categories[5]: []
-        }
-    }
+    youtube_channels_statistics_csv = dict()
+    youtube_channels_statistics_txt = dict()
+    for status in config.status:
+        youtube_channels_statistics_csv[status] = dict()
+        youtube_channels_statistics_txt[status] = dict()
+        for category in config.categories:
+            youtube_channels_statistics_csv[status][category] = []
+            youtube_channels_statistics_txt[status][category] = []
 
     for status in config.status:
         for category in config.categories:
