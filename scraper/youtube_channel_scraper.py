@@ -1,12 +1,9 @@
 from bs4 import BeautifulSoup
 from config.config import Config
-from utils.data_formatter import DataFormatter
-
-import requests
-import time
+from utils.web_request import WebRequest
 
 config = Config()
-data_formatter = DataFormatter()
+web_request = WebRequest()
 
 
 class YoutubeChannelScrapper:
@@ -33,24 +30,13 @@ class YoutubeChannelScrapper:
             exit(1)
         return n
 
-    def request(self, target_address):
-        cookies = config.cookies
-        for request_attempt in config.request_sleep_secs:
-            response = requests.get(target_address, cookies=cookies)
-            if response.status_code == 200:
-                return response
-            else:
-                print('ERROR: failed to scrape', target_address)
-                print('RETRYING IN', request_attempt, 'seconds')
-                time.sleep(request_attempt)
-
     def get_youtube_channels_statistics(self, category, status):
         target_address = ''
         if status == 'increased':
             target_address = config.increased_category_urls[category]
         elif status == 'decreased':
             target_address = config.decreased_category_urls[category]
-        response = self.request(target_address)
+        response = web_request.requester(target_address)
         document = BeautifulSoup(response.text, 'html.parser')
         channel_statistics = []
         rank = 0
@@ -95,7 +81,7 @@ class YoutubeChannelScrapper:
 
     def get_youtube_channel_url(self, channel_uri):
         target_address = config.noxinfluencer_url + channel_uri
-        response = self.request(target_address)
+        response = web_request.requester(target_address)
         document = BeautifulSoup(response.text, 'html.parser')
         youtube_channel_url = ''
         try:
