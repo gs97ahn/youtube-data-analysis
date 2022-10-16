@@ -4,7 +4,7 @@
 decrease period.**
 
 ![Python](https://img.shields.io/badge/Python-3.8-6db33f?logo=Python&style=flat)
-![SpringBoot](https://img.shields.io/badge/Youtube_API-v3-6db33f?logo=Youtube&style=flat)
+![YoutubeAPI](https://img.shields.io/badge/Youtube_API-v3-6db33f?logo=Youtube&style=flat)
 
 ## Websites Used
 - <a href="https://www.youtube.com/" target="_blank">Youtube</a>
@@ -30,7 +30,7 @@ Web scrape statistics of top 30 increase and decrease categories.
 python3 ./web_scrape.py
 ```
 
-### 2️⃣ API
+### 2️⃣ Youtube API
 Query maximum of 10 most recent videos and get all the comments.
 
 ```
