@@ -6,7 +6,7 @@ config = Config()
 web_request = WebRequest()
 
 
-class YoutubeChannelScrapper:
+class YoutubeChannelStatisticsScrapper:
     def count_format_from_text_to_numeric(self, count):
         if count[-1] == 'K':
             n = float(count[:-1]) * 1000

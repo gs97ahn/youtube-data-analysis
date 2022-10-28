@@ -5,7 +5,6 @@ import os
 
 class Config:
     def __init__(self):
-
         # Youtube Categories
         self.categories = [
             'gaming',
@@ -74,30 +73,31 @@ class Config:
         # Current date
         self.date = datetime.today().strftime('_%Y-%m-%d')
 
+        # Channel Statistics
         # CSV
-        self.status_category_statistics_csv_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'statistics/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'statistics/' + self.status[1] + '/'
+        self.channel_statistics_csv_folder_path = {
+            self.status[0]: self.data_parent_folder_path + 'channel_statistics/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'channel_statistics/' + self.status[1] + '/'
         }
-        self.youtube_channel_statistics_csv_file_name = {
+        self.channel_statistics_csv_file_name = {
             self.status[0]: {
-                self.categories[0]: 'gaming_category_statistics' + self.date + '.csv',
-                self.categories[1]: 'science_and_technology_category_statistics' + self.date + '.csv',
-                self.categories[2]: 'entertainment_category_statistics' + self.date + '.csv',
-                self.categories[3]: 'travel_and_events_category_statistics' + self.date + '.csv',
-                self.categories[4]: 'how_to_and_style_category_statistics' + self.date + '.csv',
-                self.categories[5]: 'autos_and_vehicles_category_statistics' + self.date + '.csv'
+                self.categories[0]: 'gaming_category' + self.date + '.csv',
+                self.categories[1]: 'science_and_technology_category' + self.date + '.csv',
+                self.categories[2]: 'entertainment_category' + self.date + '.csv',
+                self.categories[3]: 'travel_and_events_category' + self.date + '.csv',
+                self.categories[4]: 'how_to_and_style_category' + self.date + '.csv',
+                self.categories[5]: 'autos_and_vehicles_category' + self.date + '.csv'
             },
             self.status[1]: {
-                self.categories[0]: 'gaming_category_channel_statistics' + self.date + '.csv',
-                self.categories[1]: 'science_and_technology_category_channel_statistics' + self.date + '.csv',
-                self.categories[2]: 'entertainment_category_channel_statistics' + self.date + '.csv',
-                self.categories[3]: 'travel_and_events_category_channel_statistics' + self.date + '.csv',
-                self.categories[4]: 'how_to_and_style_category_channel_statistics' + self.date + '.csv',
-                self.categories[5]: 'autos_and_vehicles_category_channel_statistics' + self.date + '.csv'
+                self.categories[0]: 'gaming_category' + self.date + '.csv',
+                self.categories[1]: 'science_and_technology_category' + self.date + '.csv',
+                self.categories[2]: 'entertainment_category' + self.date + '.csv',
+                self.categories[3]: 'travel_and_events_category' + self.date + '.csv',
+                self.categories[4]: 'how_to_and_style_category' + self.date + '.csv',
+                self.categories[5]: 'autos_and_vehicles_category' + self.date + '.csv'
             }
         }
-        self.youtube_channel_statistics_header = [
+        self.channel_statistics_header = [
             'rank',
             'channel name',
             'current subscriber',
@@ -108,11 +108,11 @@ class Config:
         ]
 
         # HTML
-        self.status_category_statistics_html_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'html/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'html/' + self.status[1] + '/'
+        self.channel_statistics_html_folder_path = {
+            self.status[0]: self.data_parent_folder_path + 'raw/channel_statistics_html/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'raw/channel_statistics_html/' + self.status[1] + '/'
         }
-        self.youtube_channel_statistics_html_file_name = {
+        self.channel_statistics_html_file_name = {
             self.status[0]: {
                 self.categories[0]: 'gaming_category' + self.date + '.txt',
                 self.categories[1]: 'science_and_technology_category' + self.date + '.txt',
@@ -135,4 +135,200 @@ class Config:
         # API Key
         self.api_key = os.environ['API_KEY']
 
+        # Videos
+        # JSON
+        self.videos_json_folder_path = {
+            self.status[0]: {
+                self.categories[0]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
+                                    self.categories[5] + '/',
+            },
+            self.status[1]: {
+                self.categories[0]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
+                                    self.categories[5] + '/',
+            },
+        }
 
+        # CSV
+        self.videos_csv_folder_path = {
+            self.status[0]: {
+                self.categories[0]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
+                                    self.categories[5] + '/',
+            },
+            self.status[1]: {
+                self.categories[0]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
+                                    self.categories[5] + '/',
+            },
+        }
+        self.videos_header = []
+
+        # Video Statistics
+        # JSON
+        self.video_statistics_json_folder_path = {
+            self.status[0]: {
+                self.categories[0]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
+                                    self.categories[5] + '/',
+            },
+            self.status[1]: {
+                self.categories[0]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
+                                    self.categories[5] + '/',
+            },
+        }
+
+        # CSV
+        self.video_statistics_csv_folder_path = {
+            self.status[0]: {
+                self.categories[0]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
+                                    self.categories[5] + '/',
+            },
+            self.status[1]: {
+                self.categories[0]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
+                                    self.categories[5] + '/',
+            },
+        }
+        self.video_statistics_header = []
+
+        # Comments
+        # JSON
+        self.comments_json_folder_path = {
+            self.status[0]: {
+                self.categories[0]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
+                                    self.categories[5] + '/',
+            },
+            self.status[1]: {
+                self.categories[0]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
+                                    self.categories[5] + '/',
+            },
+        }
+
+        # CSV
+        self.comments_csv_folder_path = {
+            self.status[0]: {
+                self.categories[0]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
+                                    self.categories[5] + '/',
+            },
+            self.status[1]: {
+                self.categories[0]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
+                                    self.categories[0] + '/',
+                self.categories[1]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
+                                    self.categories[1] + '/',
+                self.categories[2]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
+                                    self.categories[2] + '/',
+                self.categories[3]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
+                                    self.categories[3] + '/',
+                self.categories[4]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
+                                    self.categories[4] + '/',
+                self.categories[5]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
+                                    self.categories[5] + '/',
+            },
+        }
+        self.comments_header = []
