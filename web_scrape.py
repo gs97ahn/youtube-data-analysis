@@ -40,13 +40,6 @@ def web_scrape_youtube_channel_statistics_and_info():
         status_html_folder_path = config.status_category_statistics_html_folder_path[status]
         for category in config.categories:
             print('\n', status.upper(), category.upper(), '\n')
-            for rank in range(config.top_channel_number):
-                youtube_channels_statistics_csv[status][category][rank].append(
-                    youtube_channel_scrapper.get_youtube_channel_url(
-                        youtube_channels_statistics_csv[status][category][rank][6]
-                    )
-                )
-                print(youtube_channels_statistics_csv[status][category][rank])
             data_format.csv_saver(
                 os.path.join(status_csv_folder_path, config.youtube_channel_statistics_csv_file_name[status][category]),
                 config.youtube_channel_statistics_header,

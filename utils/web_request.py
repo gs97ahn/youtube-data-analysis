@@ -10,7 +10,7 @@ class WebRequest:
     def requester(self, target_address):
         cookies = config.cookies
         for request_attempt in config.request_sleep_secs:
-            time.sleep(3)
+            time.sleep(1)
             response = requests.get(target_address, cookies=cookies)
             if response.status_code == 200:
                 return response

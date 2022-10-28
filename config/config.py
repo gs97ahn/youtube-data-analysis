@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import os
+
 
 class Config:
     def __init__(self):
@@ -16,7 +18,8 @@ class Config:
         self.status = ['increased', 'decreased']
         self.top_channel_number = 30
 
-        # Main URL
+        # Web Scraping Related
+        # URL
         self.noxinfluencer_url = 'https://www.noxinfluencer.com'
 
         # Top 100 Increase Subscription by Categories URI
@@ -63,7 +66,7 @@ class Config:
         self.cookies = {'customLanguage': 'EN'}
 
         # Time Sleep
-        self.request_sleep_secs = [10, 30, 60, 180, 300, 600, 1]
+        self.request_sleep_secs = [5, 10, 30, 60, 300, 600, 1]
 
         # Data folder and file name
         self.data_parent_folder_path = './data/'
@@ -101,8 +104,7 @@ class Config:
             'subscriber change rate',
             'average views',
             'views change rate',
-            'noxinfluencer channel uri',
-            'youtube channel url'
+            'channel id',
         ]
 
         # HTML
@@ -128,5 +130,9 @@ class Config:
                 self.categories[5]: 'autos_and_vehicles_category' + self.date + '.txt'
             }
         }
+
+        # API Related
+        # API Key
+        self.api_key = os.environ['API_KEY']
 
 

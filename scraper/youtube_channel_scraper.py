@@ -13,7 +13,7 @@ class YoutubeChannelScrapper:
         elif count[-1] == 'M':
             n = float(count[:-1]) * 1000000
         elif count[-1] == 'B':
-            n = (float(count[:-1]) * 1000000000)
+            n = float(count[:-1]) * 1000000000
         else:
             n = float(count)
         return int(n)
@@ -61,9 +61,9 @@ class YoutubeChannelScrapper:
             subscriber_change_rate = self.percentage_from_tag_to_float(subscriber_change_rate)
             average_view_change_rate = self.percentage_from_tag_to_float(average_view_change_rate)
 
-            channel_uri = str(
+            channel_id = str(
                 content[youtuber].find(class_='link clearfix', href=True)
-            ).strip().split('href="')[1].split('">')[0]
+            ).strip().split('href="/youtube/channel/')[1].split('">')[0]
 
             channel_info = [
                 rank,
@@ -72,21 +72,9 @@ class YoutubeChannelScrapper:
                 subscriber_change_rate,
                 current_average_view,
                 average_view_change_rate,
-                channel_uri
+                channel_id
             ]
             print(channel_info)
             channel_statistics.append(channel_info)
 
         return channel_statistics, document.prettify()
-
-    def get_youtube_channel_url(self, channel_uri):
-        target_address = config.noxinfluencer_url + channel_uri
-        response = web_request.requester(target_address)
-        document = BeautifulSoup(response.text, 'html.parser')
-        youtube_channel_url = ''
-        try:
-            youtube_channel_url = str(document.find(class_='icon-wrapper')).strip().split('href="')[1].split('"')[0]
-        except:
-            print('ERROR:', str(document.find(class_='icon-wrapper')).strip())
-        return youtube_channel_url
-
