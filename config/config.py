@@ -73,13 +73,8 @@ class Config:
         # Current date
         self.date = datetime.today().strftime('_%Y-%m-%d')
 
-        # Channel Statistics
-        # CSV
-        self.channel_statistics_csv_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'channel_statistics/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'channel_statistics/' + self.status[1] + '/'
-        }
-        self.channel_statistics_csv_file_name = {
+        # CSV File Name
+        self.csv_file_name = {
             self.status[0]: {
                 self.categories[0]: 'gaming_category' + self.date + '.csv',
                 self.categories[1]: 'science_and_technology_category' + self.date + '.csv',
@@ -96,6 +91,33 @@ class Config:
                 self.categories[4]: 'how_to_and_style_category' + self.date + '.csv',
                 self.categories[5]: 'autos_and_vehicles_category' + self.date + '.csv'
             }
+        }
+
+        # Raw File Name
+        self.raw_file_name = {
+            self.status[0]: {
+                self.categories[0]: 'gaming_category' + self.date + '.txt',
+                self.categories[1]: 'science_and_technology_category' + self.date + '.txt',
+                self.categories[2]: 'entertainment_category' + self.date + '.txt',
+                self.categories[3]: 'travel_and_events_category' + self.date + '.txt',
+                self.categories[4]: 'how_to_and_style_category' + self.date + '.txt',
+                self.categories[5]: 'autos_and_vehicles_category' + self.date + '.txt'
+            },
+            self.status[1]: {
+                self.categories[0]: 'gaming_category' + self.date + '.txt',
+                self.categories[1]: 'science_and_technology_category' + self.date + '.txt',
+                self.categories[2]: 'entertainment_category' + self.date + '.txt',
+                self.categories[3]: 'travel_and_events_category' + self.date + '.txt',
+                self.categories[4]: 'how_to_and_style_category' + self.date + '.txt',
+                self.categories[5]: 'autos_and_vehicles_category' + self.date + '.txt'
+            }
+        }
+
+        # Channel Statistics
+        # CSV
+        self.channel_statistics_csv_folder_path = {
+            self.status[0]: self.data_parent_folder_path + 'channel_statistics/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'channel_statistics/' + self.status[1] + '/'
         }
         self.channel_statistics_header = [
             'rank',
@@ -112,24 +134,6 @@ class Config:
             self.status[0]: self.data_parent_folder_path + 'raw/channel_statistics_html/' + self.status[0] + '/',
             self.status[1]: self.data_parent_folder_path + 'raw/channel_statistics_html/' + self.status[1] + '/'
         }
-        self.channel_statistics_html_file_name = {
-            self.status[0]: {
-                self.categories[0]: 'gaming_category' + self.date + '.txt',
-                self.categories[1]: 'science_and_technology_category' + self.date + '.txt',
-                self.categories[2]: 'entertainment_category' + self.date + '.txt',
-                self.categories[3]: 'travel_and_events_category' + self.date + '.txt',
-                self.categories[4]: 'how_to_and_style_category' + self.date + '.txt',
-                self.categories[5]: 'autos_and_vehicles_category' + self.date + '.txt'
-            },
-            self.status[1]: {
-                self.categories[0]: 'gaming_category' + self.date + '.txt',
-                self.categories[1]: 'science_and_technology_category' + self.date + '.txt',
-                self.categories[2]: 'entertainment_category' + self.date + '.txt',
-                self.categories[3]: 'travel_and_events_category' + self.date + '.txt',
-                self.categories[4]: 'how_to_and_style_category' + self.date + '.txt',
-                self.categories[5]: 'autos_and_vehicles_category' + self.date + '.txt'
-            }
-        }
 
         # API Related
         # API Key
@@ -138,197 +142,42 @@ class Config:
         # Videos
         # JSON
         self.videos_json_folder_path = {
-            self.status[0]: {
-                self.categories[0]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/' +
-                                    self.categories[5] + '/',
-            },
-            self.status[1]: {
-                self.categories[0]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/' +
-                                    self.categories[5] + '/',
-            },
+            self.status[0]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/'
         }
 
-        # CSV
-        self.videos_csv_folder_path = {
-            self.status[0]: {
-                self.categories[0]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'videos/' + self.status[0] + '/' +
-                                    self.categories[5] + '/',
-            },
-            self.status[1]: {
-                self.categories[0]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'videos/' + self.status[1] + '/' +
-                                    self.categories[5] + '/',
-            },
-        }
-        self.videos_header = []
+        # CSV Header
+        self.videos_header = ['channel id', 'video id', 'title', 'published at', 'thumbnail url']
 
         # Video Statistics
         # JSON
         self.video_statistics_json_folder_path = {
-            self.status[0]: {
-                self.categories[0]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/' +
-                                    self.categories[5] + '/',
-            },
-            self.status[1]: {
-                self.categories[0]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/' +
-                                    self.categories[5] + '/',
-            },
+            self.status[0]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/'
         }
 
+        # CSV Header
+        self.video_statistics_header = ['comment count', 'favorite count', 'like count', 'view count']
+
+        # Video and Video Statistics
         # CSV
-        self.video_statistics_csv_folder_path = {
-            self.status[0]: {
-                self.categories[0]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'video_statistics/' + self.status[0] + '/' +
-                                    self.categories[5] + '/',
-            },
-            self.status[1]: {
-                self.categories[0]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'video_statistics/' + self.status[1] + '/' +
-                                    self.categories[5] + '/',
-            },
+        self.videos_and_video_statistics_csv_folder_path = {
+            self.status[0]: self.data_parent_folder_path + 'videos_and_video_statistics/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'videos_and_video_statistics/' + self.status[1] + '/'
         }
-        self.video_statistics_header = []
 
         # Comments
         # JSON
         self.comments_json_folder_path = {
-            self.status[0]: {
-                self.categories[0]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/' +
-                                    self.categories[5] + '/',
-            },
-            self.status[1]: {
-                self.categories[0]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/' +
-                                    self.categories[5] + '/',
-            },
+            self.status[0]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/'
         }
 
         # CSV
         self.comments_csv_folder_path = {
-            self.status[0]: {
-                self.categories[0]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/' +
-                                    self.categories[5] + '/',
-            },
-            self.status[1]: {
-                self.categories[0]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
-                                    self.categories[0] + '/',
-                self.categories[1]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
-                                    self.categories[1] + '/',
-                self.categories[2]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
-                                    self.categories[2] + '/',
-                self.categories[3]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
-                                    self.categories[3] + '/',
-                self.categories[4]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
-                                    self.categories[4] + '/',
-                self.categories[5]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/' +
-                                    self.categories[5] + '/',
-            },
+            self.status[0]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/'
         }
-        self.comments_header = []
+
+        # CSV Header
+        self.comments_header = ['video id', 'author name', 'comment text', 'like count', 'updated at']
