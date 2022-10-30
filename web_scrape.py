@@ -22,10 +22,10 @@ def web_scrape_youtube_channel_statistics():
     for status in config.status:
         for category in config.categories:
             print('\n', status.upper(), category.upper(), '\n')
-            channel_statistics, document = youtube_channel_statistics_scraper.get_youtube_channels_statistics(category,
-                                                                                                              status)
+            channel_statistics, raw = youtube_channel_statistics_scraper.get_youtube_channels_statistics(category,
+                                                                                                         status)
             youtube_channels_statistics_csv[status][category].extend(channel_statistics)
-            youtube_channels_statistics_txt[status][category].extend(document)
+            youtube_channels_statistics_txt[status][category].extend(raw)
 
     if not os.path.isdir(config.data_parent_folder_path):
         os.mkdir(config.data_parent_folder_path)
@@ -42,15 +42,16 @@ def web_scrape_youtube_channel_statistics():
         for category in config.categories:
             print('\n', status.upper(), category.upper(), '\n')
             data_format.csv_saver(
-                os.path.join(status_csv_folder_path, config.channel_statistics_csv_file_name[status][category]),
+                os.path.join(status_csv_folder_path, config.csv_file_name[status][category]),
                 config.channel_statistics_header,
                 youtube_channels_statistics_csv[status][category]
             )
             data_format.txt_saver(
-                os.path.join(status_html_folder_path, config.channel_statistics_html_file_name[status][category]),
+                os.path.join(status_html_folder_path, config.raw_file_name[status][category]),
                 youtube_channels_statistics_txt[status][category]
             )
 
 
 if __name__ == '__main__':
     web_scrape_youtube_channel_statistics()
+    print('\n\n\nDONE!\n\n\n')
