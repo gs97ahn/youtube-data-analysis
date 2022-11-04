@@ -2,7 +2,6 @@ from config.config import Config
 from googleapiclient.discovery import build
 
 import json
-import time
 
 config = Config()
 

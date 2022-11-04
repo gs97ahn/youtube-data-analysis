@@ -146,9 +146,6 @@ class Config:
             self.status[1]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/'
         }
 
-        # CSV Header
-        self.videos_header = ['channel id', 'video id', 'title', 'published at', 'thumbnail url']
-
         # Video Statistics
         # JSON
         self.video_statistics_json_folder_path = {
@@ -156,15 +153,14 @@ class Config:
             self.status[1]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/'
         }
 
-        # CSV Header
-        self.video_statistics_header = ['comment count', 'favorite count', 'like count', 'view count']
-
         # Video and Video Statistics
         # CSV
         self.videos_and_video_statistics_csv_folder_path = {
             self.status[0]: self.data_parent_folder_path + 'videos_and_video_statistics/' + self.status[0] + '/',
             self.status[1]: self.data_parent_folder_path + 'videos_and_video_statistics/' + self.status[1] + '/'
         }
+        self.videos_and_video_statistics_header = ['channel id', 'video id', 'title', 'published at', 'thumbnail url',
+                                                   'comment count', 'favorite count', 'like count', 'view count']
 
         # Comments
         # JSON

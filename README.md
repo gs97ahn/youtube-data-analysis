@@ -32,7 +32,7 @@ python3 ./web_scrape.py
 ```
 
 ### 2️⃣ Youtube API
-Query maximum of 10 most recent videos and get all the comments and statistics.
+Query maximum of 5 most recent videos and get 100 the comments and statistics.
 
 ```
 python 3 ./api_query.py
