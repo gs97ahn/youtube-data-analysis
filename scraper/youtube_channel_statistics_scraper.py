@@ -77,4 +77,7 @@ class YoutubeChannelStatisticsScrapper:
             print(channel_info)
             channel_statistics.append(channel_info)
 
+            if youtuber + 2 >= len(content):
+                break
+
         return channel_statistics, document.prettify()
