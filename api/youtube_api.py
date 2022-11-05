@@ -1,3 +1,5 @@
+import googleapiclient.errors
+
 from config.config import Config
 from googleapiclient.discovery import build
 
@@ -57,7 +59,15 @@ class YoutubeApi:
     def comments(self, video_id):
         youtube = build('youtube', 'v3', developerKey=config.api_key)
         request = youtube.commentThreads().list(part='snippet', videoId=video_id, maxResults='100', order='time')
-        response = request.execute()
+        try:
+            response = request.execute()
+        except googleapiclient.errors.HttpError as error:
+            if error.reason.split('has ')[1].strip('.') == 'disabled comments':
+                print('ERROR: ' + video_id + 'comment disabled')
+                return [], []
+            else:
+                print('ERROR: ' + error.error_details)
+                exit(1)
 
         comments_raw_data = json.dumps(response, sort_keys=True, indent=4)
         comments = []

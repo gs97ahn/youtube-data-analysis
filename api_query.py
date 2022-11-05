@@ -92,6 +92,8 @@ def youtube_api_comments(target_category):
 
     for status in config.status:
         for category in config.categories:
+            if target_category != category:
+                continue
             youtube_videos[status][category] = data_format.csv_reader(
                 os.path.join(
                     config.videos_and_video_statistics_csv_folder_path[status],
