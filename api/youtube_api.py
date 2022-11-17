@@ -62,8 +62,12 @@ class YoutubeApi:
         try:
             response = request.execute()
         except googleapiclient.errors.HttpError as error:
-            if error.reason.split('has ')[1].strip('.') == 'disabled comments':
-                print('ERROR: ' + video_id + 'comment disabled')
+            if error.reason == 'One or more of the requested comment threads cannot be retrieved due to insufficient ' \
+                               'permissions. The request might not be properly authorized.':
+                print('ERROR: ' + video_id + ' insufficient permissions')
+                return [], []
+            elif error.reason.split('has ')[1].strip('.') == 'disabled comments':
+                print('ERROR: ' + video_id + ' disabled comments')
                 return [], []
             else:
                 print('ERROR: ' + error.error_details)
