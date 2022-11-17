@@ -2,3 +2,5 @@ beautifulsoup4
 requests
 pandas
 google-api-python-client
+nltk
+tqdm
