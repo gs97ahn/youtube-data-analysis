@@ -8,7 +8,6 @@ import nltk
 import pandas as pd
 import string
 
-
 nltk.download('all')
 config = Config()
 data_format = DataFormat()
@@ -110,11 +109,15 @@ def comment_data_save(comments):
         if not os.path.isdir(config.comments_json_folder_path[status]):
             os.makedirs(config.comments_json_folder_path[status])
         for category in config.categories:
+            data_list = []
+            for key, value in comments[status][category].items():
+                data = [key, value]
+                data_list.append(data)
             data_format.csv_saver(
                 os.path.join(config.comments_json_folder_path[status],
                              config.csv_file_name[status][category].strip('category')[0] + '.csv'),
                 config.comment_words_header,
-                pd.Series(comments[status][category]).to_frame()
+                data_list
             )
 
 
