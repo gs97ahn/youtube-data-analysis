@@ -77,19 +77,21 @@ def stopwords(keep_english_only_comments):
         for category in config.categories:
             stopwords_removed_comments[status][category] = list()
             stopwords_removed_comments[status][category] = [
-                w for w in tqdm(keep_english_only_comments[status][category]) if w not in nltk.corpus.stopwords.words()
+                w for w in tqdm(keep_english_only_comments[status][category])
+                if w not in nltk.corpus.stopwords.words('english')
             ]
     return stopwords_removed_comments
 
 
 def word_stem(stopwords_removed_comments):
+    stemmer = nltk.stem.porter.PorterStemmer()
     word_stem_comments = dict()
     for status in config.status:
         word_stem_comments[status] = dict()
         for category in config.categories:
             word_stem_comments[status][category] = list()
             for word in tqdm(stopwords_removed_comments[status][category]):
-                word_stem_comments[status][category].extend(nltk.stem.porter.PorterStemmer.stem(word=word))
+                word_stem_comments[status][category].extend(stemmer.stem(word))
     return word_stem_comments
 
 
