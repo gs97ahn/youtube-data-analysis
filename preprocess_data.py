@@ -2,10 +2,10 @@ from config.config import Config
 from utils.data_format import DataFormat
 from tqdm import tqdm
 from collections import Counter
+from datetime import datetime
 
 import os
 import nltk
-import pandas as pd
 import string
 
 nltk.download('all')
@@ -29,8 +29,8 @@ def get_comments():
                         os.path.join(config.comments_csv_folder_path[status], file)
                     )
                     break
-            youtube_comments_data[status][category] = youtube_comments_csv[status][category][
-                config.comments_header[2]].tolist()
+            youtube_comments_data[status][category] = \
+                youtube_comments_csv[status][category][config.comments_header[2]].tolist()
     return youtube_comments_data
 
 
@@ -65,7 +65,7 @@ def english(punctuation_removed_comments):
             keep_english_only_comments[status][category] = list()
             for word in tqdm(punctuation_removed_comments[status][category]):
                 if word in nltk.corpus.words.words():
-                    keep_english_only_comments[status][category].extend(word)
+                    keep_english_only_comments[status][category].append(word.lower())
     return keep_english_only_comments
 
 
@@ -90,7 +90,7 @@ def word_stem(stopwords_removed_comments):
         for category in config.categories:
             word_stem_comments[status][category] = list()
             for word in tqdm(stopwords_removed_comments[status][category]):
-                word_stem_comments[status][category].extend(stemmer.stem(word))
+                word_stem_comments[status][category].append(stemmer.stem(word))
     return word_stem_comments
 
 
@@ -106,16 +106,18 @@ def word_count(word_stem_comments):
 
 def comment_data_save(comments):
     for status in config.status:
-        if not os.path.isdir(config.comments_json_folder_path[status]):
-            os.makedirs(config.comments_json_folder_path[status])
+        if not os.path.isdir(config.comment_words_csv_folder_path[status]):
+            os.makedirs(config.comment_words_csv_folder_path[status])
         for category in config.categories:
             data_list = []
             for key, value in comments[status][category].items():
                 data = [key, value]
                 data_list.append(data)
             data_format.csv_saver(
-                os.path.join(config.comments_json_folder_path[status],
-                             config.csv_file_name[status][category].strip('category')[0] + '.csv'),
+                os.path.join(
+                    config.comment_words_csv_folder_path[status],
+                    config.csv_file_name[status][category].split(datetime.today().strftime('_%Y'))[0] + '.csv'
+                ),
                 config.comment_words_header,
                 data_list
             )
