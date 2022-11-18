@@ -118,24 +118,18 @@ def comment_data_save(comments):
 
 if __name__ == '__main__':
     youtube_comments = get_comments()
-
     print('\n\nTOKENIZE COMMENTS\n')
     youtube_comments_tokenized = tokenize(youtube_comments)
-
     print('\n\nREMOVE PUNCTUATION\n')
     punctuation_removed_youtube_comments = punctuation(youtube_comments_tokenized)
-
     print('\n\nKEEP ENGLISH ONLY\n')
     keep_english_only_youtube_comments = english(punctuation_removed_youtube_comments)
-
     print('\n\nREMOVE STOPWORDS\n')
     stopwords_removed_youtube_comments = stopwords(keep_english_only_youtube_comments)
-
     print('\n\nWORD STEM\n')
     word_stem_youtube_comments = word_stem(stopwords_removed_youtube_comments)
-
     print('\n\nWORD COUNT\n')
     word_counted_youtube_comments = word_count(word_stem_youtube_comments)
-
     comment_data_save(word_counted_youtube_comments)
+    print('\n\n\nDONE!\n\n\n')
 
