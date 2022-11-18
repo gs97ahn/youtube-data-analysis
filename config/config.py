@@ -177,3 +177,13 @@ class Config:
 
         # CSV Header
         self.comments_header = ['video id', 'author name', 'comment text', 'like count', 'updated at']
+
+        # Comment Words
+        # CSV
+        self.comment_words_csv_folder_path = {
+            self.status[0]: self.data_parent_folder_path + 'comment_words/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'comment_words/' + self.status[1] + '/'
+        }
+
+        # CSV Header
+        self.comment_words_header = ['comment', 'count']
