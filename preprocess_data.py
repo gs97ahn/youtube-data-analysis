@@ -17,7 +17,6 @@ def get_comments():
     youtube_comments_data = dict()
     youtube_comments_csv = dict()
     youtube_comments_filename = dict()
-
     for status in config.status:
         youtube_comments_data[status] = dict()
         youtube_comments_csv[status] = dict()
