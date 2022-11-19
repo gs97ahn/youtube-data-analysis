@@ -28,17 +28,17 @@ pip install -r requirements.txt
 Web scrape statistics of top 30 increase and decrease categories.
 
 ```
-python ./web_scrape.py
+python web_scrape.py
 ```
 
 ### 2️⃣ Youtube API
 Query maximum of 5 most recent videos and get 100 the comments and statistics.
 
 ```
-python ./api_query.py
+python api_query.py
 ```
 
-### 3️⃣ Preprocess Data
+### 3️⃣ Preprocess
 Preprocess data by doing the following:
 
 - Tokenize comments
