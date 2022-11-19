@@ -1,117 +1,71 @@
 from config.config import Config
 from utils.data_format import DataFormat
-from tqdm import tqdm
-from collections import Counter
 from datetime import datetime
+from utils.data_preprocessor import DataPreprocessor
 
 import os
 import nltk
-import string
 
 nltk.download('all')
 config = Config()
 data_format = DataFormat()
+data_preprocessor = DataPreprocessor()
 
 
-def get_comments():
-    youtube_comments_data = dict()
-    youtube_comments_csv = dict()
-    youtube_comments_filename = dict()
+def preprocess_comment_data():
+    comment_data = dict()
+    comment_csv = dict()
+    comment_filename = dict()
     for status in config.status:
-        youtube_comments_data[status] = dict()
-        youtube_comments_csv[status] = dict()
-        youtube_comments_filename[status] = os.listdir(config.comments_csv_folder_path[status])
+        comment_data[status] = dict()
+        comment_csv[status] = dict()
+        comment_filename[status] = os.listdir(config.comments_csv_folder_path[status])
         for category in config.categories:
-            for file in youtube_comments_filename[status]:
+            for file in comment_filename[status]:
                 if file.startswith(category):
-                    youtube_comments_csv[status][category] = data_format.csv_reader(
+                    comment_csv[status][category] = data_format.csv_reader(
                         os.path.join(config.comments_csv_folder_path[status], file)
                     )
                     break
-            youtube_comments_data[status][category] = \
-                youtube_comments_csv[status][category][config.comments_header[2]].tolist()
-    return youtube_comments_data
+            comment_data[status][category] = comment_csv[status][category][config.comments_header[2]].tolist()
 
-
-def tokenize(comments):
     tokenized_comments = dict()
+    punctuation_removed_comments = dict()
+    keep_english_only_comments = dict()
+    stopwords_removed_comments = dict()
+    word_stem_comments = dict()
+    word_count_comments = dict()
     for status in config.status:
         tokenized_comments[status] = dict()
-        for category in config.categories:
-            tokenized_comments[status][category] = list()
-            for sentence in tqdm(comments[status][category]):
-                tokenized_comments[status][category].extend(nltk.tokenize.word_tokenize(str(sentence)))
-    return tokenized_comments
-
-
-def punctuation(comment_tokens):
-    punctuation_removed_comments = dict()
-    for status in config.status:
         punctuation_removed_comments[status] = dict()
-        for category in config.categories:
-            punctuation_removed_comments[status][category] = list()
-            punctuation_removed_comments[status][category] = [
-                w for w in tqdm(comment_tokens[status][category]) if w not in string.punctuation
-            ]
-    return punctuation_removed_comments
-
-
-def english(punctuation_removed_comments):
-    keep_english_only_comments = dict()
-    for status in config.status:
         keep_english_only_comments[status] = dict()
-        for category in config.categories:
-            keep_english_only_comments[status][category] = list()
-            for word in tqdm(punctuation_removed_comments[status][category]):
-                if word in nltk.corpus.words.words():
-                    keep_english_only_comments[status][category].append(word.lower())
-    return keep_english_only_comments
-
-
-def stopwords(keep_english_only_comments):
-    stopwords_removed_comments = dict()
-    for status in config.status:
         stopwords_removed_comments[status] = dict()
-        for category in config.categories:
-            stopwords_removed_comments[status][category] = list()
-            stopwords_removed_comments[status][category] = [
-                w for w in tqdm(keep_english_only_comments[status][category])
-                if w not in nltk.corpus.stopwords.words('english')
-            ]
-    return stopwords_removed_comments
-
-
-def word_stem(stopwords_removed_comments):
-    stemmer = nltk.stem.porter.PorterStemmer()
-    word_stem_comments = dict()
-    for status in config.status:
         word_stem_comments[status] = dict()
+        word_count_comments[status] = dict()
         for category in config.categories:
-            word_stem_comments[status][category] = list()
-            for word in tqdm(stopwords_removed_comments[status][category]):
-                word_stem_comments[status][category].append(stemmer.stem(word))
-    return word_stem_comments
+            print('\n', status.upper(), category.upper(), '\n')
+            tokenized_comments[status][category] = DataPreprocessor.tokenize(comment_data[status][category])
+            punctuation_removed_comments[status][category] = DataPreprocessor.punctuation(
+                tokenized_comments[status][category]
+            )
+            keep_english_only_comments[status][category] = DataPreprocessor.english(
+                punctuation_removed_comments[status][category]
+            )
+            stopwords_removed_comments[status][category] = DataPreprocessor.stopwords(
+                keep_english_only_comments[status][category]
+            )
+            word_stem_comments[status][category] = DataPreprocessor.word_stem(
+                stopwords_removed_comments[status][category]
+            )
+            word_count_comments[status][category] = DataPreprocessor.word_count(word_stem_comments[status][category])
 
-
-def word_count(word_stem_comments):
-    word_counted_comments = dict()
-    for status in config.status:
-        word_counted_comments[status] = dict()
-        for category in tqdm(config.categories):
-            word_counted_comments[status][category] = dict()
-            word_counted_comments[status][category] = Counter(word_stem_comments[status][category])
-    return word_counted_comments
-
-
-def comment_data_save(comments):
     for status in config.status:
         if not os.path.isdir(config.comment_words_csv_folder_path[status]):
             os.makedirs(config.comment_words_csv_folder_path[status])
         for category in config.categories:
             data_list = []
-            for key, value in comments[status][category].items():
-                data = [key, value]
-                data_list.append(data)
+            for key, value in word_count_comments[status][category].items():
+                data_list.append([key, value])
             data_format.csv_saver(
                 os.path.join(
                     config.comment_words_csv_folder_path[status],
@@ -123,19 +77,6 @@ def comment_data_save(comments):
 
 
 if __name__ == '__main__':
-    youtube_comments = get_comments()
-    print('\n\nTOKENIZE COMMENTS\n')
-    youtube_comments_tokenized = tokenize(youtube_comments)
-    print('\n\nREMOVE PUNCTUATION\n')
-    punctuation_removed_youtube_comments = punctuation(youtube_comments_tokenized)
-    print('\n\nKEEP ENGLISH ONLY\n')
-    keep_english_only_youtube_comments = english(punctuation_removed_youtube_comments)
-    print('\n\nREMOVE STOPWORDS\n')
-    stopwords_removed_youtube_comments = stopwords(keep_english_only_youtube_comments)
-    print('\n\nWORD STEM\n')
-    word_stem_youtube_comments = word_stem(stopwords_removed_youtube_comments)
-    print('\n\nWORD COUNT\n')
-    word_counted_youtube_comments = word_count(word_stem_youtube_comments)
-    comment_data_save(word_counted_youtube_comments)
+    preprocess_comment_data()
     print('\n\n\nDONE!\n\n\n')
 

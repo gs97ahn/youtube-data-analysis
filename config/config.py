@@ -71,7 +71,7 @@ class Config:
         self.data_parent_folder_path = './data/'
 
         # Current date
-        self.date = datetime.today().strftime('_%Y-%m-%d')
+        self.date = '_2022-11-19'  # datetime.today().strftime('_%Y-%m-%d')
 
         # CSV File Name
         self.csv_file_name = {
@@ -187,3 +187,10 @@ class Config:
 
         # CSV Header
         self.comment_words_header = ['comment', 'count']
+
+        # Visualization
+        # Word Cloud
+        self.wordcloud_png_folder_path = {
+            self.status[0]: self.data_parent_folder_path + 'wordcloud/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'wordcloud/' + self.status[1] + '/'
+        }

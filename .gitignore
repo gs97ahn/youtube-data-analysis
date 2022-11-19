@@ -1,3 +1,6 @@
 # data file
 *.txt
 *.csv
+
+### PyCharm ###
+.idea

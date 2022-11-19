@@ -1,5 +1,5 @@
 from config.config import Config
-from scraper.youtube_channel_statistics_scraper import YoutubeChannelStatisticsScrapper
+from utils.youtube_channel_statistics_scraper import YoutubeChannelStatisticsScrapper
 from utils.data_format import DataFormat
 
 import os
