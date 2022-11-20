@@ -4,3 +4,5 @@ pandas
 google-api-python-client
 nltk
 tqdm
+wordcloud
+matplotlib
