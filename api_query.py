@@ -1,12 +1,12 @@
 from config.config import Config
 from utils.youtube_api import YoutubeApi
-from utils.data_format import DataFormat
+from utils.data_formatter import DataFormatter
 
 import os
 
 config = Config()
 youtube_api = YoutubeApi()
-data_format = DataFormat()
+data_format = DataFormatter()
 
 
 def youtube_api_videos_and_videos_statistics():

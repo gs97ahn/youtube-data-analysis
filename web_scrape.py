@@ -1,12 +1,12 @@
 from config.config import Config
 from utils.youtube_channel_statistics_scraper import YoutubeChannelStatisticsScrapper
-from utils.data_format import DataFormat
+from utils.data_formatter import DataFormatter
 
 import os
 
 config = Config()
 youtube_channel_statistics_scraper = YoutubeChannelStatisticsScrapper()
-data_format = DataFormat()
+data_format = DataFormatter()
 
 
 def web_scrape_youtube_channel_statistics():
@@ -40,6 +40,10 @@ def web_scrape_youtube_channel_statistics():
         status_csv_folder_path = config.channel_statistics_csv_folder_path[status]
         status_html_folder_path = config.channel_statistics_html_folder_path[status]
         for category in config.categories:
+            ################ REMOVE LATER ################
+            if category != config.categories[1]:
+                continue
+            ################ REMOVE LATER ################
             print('\n', status.upper(), category.upper(), '\n')
             data_format.csv_saver(
                 os.path.join(status_csv_folder_path, config.csv_file_name[status][category]),

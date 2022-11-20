@@ -1,0 +1,19 @@
+import pandas as pd
+
+
+class DataFormatter:
+    def csv_saver(self, filename_with_path, header, data):
+        data_df = pd.DataFrame(data=data)
+        data_df.to_csv(filename_with_path, header=header, index=False)
+        print('\nCSV FILE SAVED:', filename_with_path)
+
+    def csv_reader(self, filename_with_path):
+        print('\nCSV FILE READ:', filename_with_path)
+        return pd.read_csv(filename_with_path)
+
+    def txt_saver(self, filename_with_path, data):
+        with open(filename_with_path, 'w') as f:
+            f.write(''.join(data))
+        f.close()
+        print('\nTXT FILE SAVED:', filename_with_path)
+
