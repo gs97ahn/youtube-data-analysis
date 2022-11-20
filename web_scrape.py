@@ -40,10 +40,6 @@ def web_scrape_youtube_channel_statistics():
         status_csv_folder_path = config.channel_statistics_csv_folder_path[status]
         status_html_folder_path = config.channel_statistics_html_folder_path[status]
         for category in config.categories:
-            ################ REMOVE LATER ################
-            if category != config.categories[1]:
-                continue
-            ################ REMOVE LATER ################
             print('\n', status.upper(), category.upper(), '\n')
             data_format.csv_saver(
                 os.path.join(status_csv_folder_path, config.csv_file_name[status][category]),
