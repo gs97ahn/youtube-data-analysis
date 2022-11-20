@@ -15,6 +15,7 @@ class Config:
             'autos_and_vehicles'
         ]
         self.status = ['increased', 'decreased']
+        self.status_avg = 'averaged'
         self.top_channel_number = 30
 
         # Web Scraping Related
@@ -67,13 +68,13 @@ class Config:
         # Time Sleep
         self.request_sleep_secs = [5, 10, 30, 60, 300, 600, 1]
 
-        # Data folder and file name
+        # Parent Data Folder Name
         self.data_parent_folder_path = './data/'
 
-        # Current date
-        self.date = '_2022-11-19'  # datetime.today().strftime('_%Y-%m-%d')
+        # Current Date
+        self.date = datetime.today().strftime('_%Y-%m-%d')
 
-        # CSV File Name
+        # CSV Filename
         self.csv_file_name = {
             self.status[0]: {
                 self.categories[0]: 'gaming_category' + self.date + '.csv',
@@ -93,7 +94,7 @@ class Config:
             }
         }
 
-        # Raw File Name
+        # Raw Filename
         self.raw_file_name = {
             self.status[0]: {
                 self.categories[0]: 'gaming_category' + self.date + '.txt',
@@ -110,6 +111,26 @@ class Config:
                 self.categories[3]: 'travel_and_events_category' + self.date + '.txt',
                 self.categories[4]: 'how_to_and_style_category' + self.date + '.txt',
                 self.categories[5]: 'autos_and_vehicles_category' + self.date + '.txt'
+            }
+        }
+
+        # Image Filename
+        self.image_file_name = {
+            self.status[0]: {
+                self.categories[0]: 'gaming_category.png',
+                self.categories[1]: 'science_and_technology_category.png',
+                self.categories[2]: 'entertainment_category.png',
+                self.categories[3]: 'travel_and_events_category.png',
+                self.categories[4]: 'how_to_and_style_category.png',
+                self.categories[5]: 'autos_and_vehicles_category.png'
+            },
+            self.status[1]: {
+                self.categories[0]: 'gaming_category.png',
+                self.categories[1]: 'science_and_technology_category.png',
+                self.categories[2]: 'entertainment_category.png',
+                self.categories[3]: 'travel_and_events_category.png',
+                self.categories[4]: 'how_to_and_style_category.png',
+                self.categories[5]: 'autos_and_vehicles_category.png'
             }
         }
 
@@ -184,13 +205,33 @@ class Config:
             self.status[0]: self.data_parent_folder_path + 'comment_words/' + self.status[0] + '/',
             self.status[1]: self.data_parent_folder_path + 'comment_words/' + self.status[1] + '/'
         }
+        self.date_relevant_comment_words_csv_folder_path = {
+            self.status[0]: self.data_parent_folder_path + 'date_relevant_comment_words/' + self.status[0] + '/',
+            self.status[1]: self.data_parent_folder_path + 'date_relevant_comment_words/' + self.status[1] + '/'
+        }
 
         # CSV Header
         self.comment_words_header = ['comment', 'count']
 
-        # Visualization
+        # Image
+        self.img_parent_folder_path = self.data_parent_folder_path + 'img/'
+
         # Word Cloud
         self.wordcloud_png_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'wordcloud/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'wordcloud/' + self.status[1] + '/'
+            self.status[0]: self.img_parent_folder_path + 'wordcloud/' + self.status[0] + '/',
+            self.status[1]: self.img_parent_folder_path + 'wordcloud/' + self.status[1] + '/'
+        }
+        self.date_relevant_wordcloud_png_folder_path = {
+            self.status[0]: self.img_parent_folder_path + 'date_relevant_wordcloud/' + self.status[0] + '/',
+            self.status[1]: self.img_parent_folder_path + 'date_relevant_wordcloud/' + self.status[1] + '/'
+        }
+
+        # Horizontal Bar Graph
+        self.horizontal_bar_graph_png_folder_path = {
+            self.status[0]: self.img_parent_folder_path + 'h_bar_graph/' + self.status[0] + '/',
+            self.status[1]: self.img_parent_folder_path + 'h_bar_graph/' + self.status[1] + '/'
+        }
+        self.date_relevant_horizontal_bar_graph_png_folder_path = {
+            self.status[0]: self.img_parent_folder_path + 'date_relevant_h_bar_graph/' + self.status[0] + '/',
+            self.status[1]: self.img_parent_folder_path + 'date_relevant_h_bar_graph/' + self.status[1] + '/'
         }
