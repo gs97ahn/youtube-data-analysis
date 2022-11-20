@@ -122,10 +122,10 @@ def visualize_by_horizontal_bar_graph(comment_words_data, h_bar_graph_png_folder
 
 if __name__ == '__main__':
     youtube_comment_words_data = get_comment_word_data(config.comment_words_csv_folder_path)
-    # date_relevant_youtube_comment_words_data = get_comment_word_data(config.date_relevant_comment_words_csv_folder_path)
-    # visualize_by_word_cloud(youtube_comment_words_data, config.wordcloud_png_folder_path)
-    # visualize_by_word_cloud(date_relevant_youtube_comment_words_data, config.date_relevant_wordcloud_png_folder_path)
+    date_relevant_youtube_comment_words_data = get_comment_word_data(config.date_relevant_comment_words_csv_folder_path)
+    visualize_by_word_cloud(youtube_comment_words_data, config.wordcloud_png_folder_path)
+    visualize_by_word_cloud(date_relevant_youtube_comment_words_data, config.date_relevant_wordcloud_png_folder_path)
     visualize_by_horizontal_bar_graph(youtube_comment_words_data, config.horizontal_bar_graph_png_folder_path)
-    # visualize_by_horizontal_bar_graph(date_relevant_youtube_comment_words_data,
-    #                                   config.date_relevant_horizontal_bar_graph_png_folder_path)
+    visualize_by_horizontal_bar_graph(date_relevant_youtube_comment_words_data,
+                                      config.date_relevant_horizontal_bar_graph_png_folder_path)
     print('\n\n\nDONE!\n\n\n')
