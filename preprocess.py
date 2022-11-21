@@ -97,7 +97,7 @@ def preprocess_comment_data(comment_data, csv_folder_path):
             data_format.csv_saver(
                 os.path.join(
                     csv_folder_path[status],
-                    config.csv_file_name[status][category].split(datetime.today().strftime('_%Y'))[0] + '.csv'
+                    config.csv_file_name[status][category].split(datetime.date.today().strftime('_%Y'))[0] + '.csv'
                 ),
                 config.comment_words_header,
                 data_list
