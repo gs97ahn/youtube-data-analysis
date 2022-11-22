@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 from config.config import Config
-from utils.web_request import WebRequest
+from utils.web_requester import WebRequester
 
 config = Config()
-web_request = WebRequest()
+web_requester = WebRequester()
 
 
 class YoutubeChannelStatisticsScrapper:
@@ -36,7 +36,7 @@ class YoutubeChannelStatisticsScrapper:
             target_address = config.increased_category_urls[category]
         elif status == 'decreased':
             target_address = config.decreased_category_urls[category]
-        response = web_request.requester(target_address)
+        response = web_requester.requester(target_address)
         document = BeautifulSoup(response.text, 'html.parser')
         ycs = []
         rank = 0
