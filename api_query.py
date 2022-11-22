@@ -11,17 +11,17 @@ data_format = DataFormatter()
 
 def youtube_api_videos_and_videos_statistics():
     youtube_channels = dict()
-    csv = dict()
+    data = dict()
     video_raw = dict()
     video_statistics_raw = dict()
     for s in config.status:
         youtube_channels[s] = dict()
-        csv[s] = dict()
+        data[s] = dict()
         video_raw[s] = dict()
         video_statistics_raw[s] = dict()
         for c in config.categories:
             youtube_channels[s][c] = list()
-            csv[s][c] = list()
+            data[s][c] = list()
             video_raw[s][c] = list()
             video_statistics_raw[s][c] = list()
 
@@ -48,13 +48,13 @@ def youtube_api_videos_and_videos_statistics():
             print('\n\n**********', s.upper(), c.upper(), '**********')
             for i in range(len(youtube_channels[s][c])):
                 v_vs_csv, v_raw, vs_raw = youtube_api.videos(youtube_channels[s][c][i])
-                csv[s][c].extend(v_vs_csv)
+                data[s][c].extend(v_vs_csv)
                 video_raw[s][c].extend(v_raw)
                 video_statistics_raw[s][c].extend(vs_raw)
 
             data_format.csv_saver(os.path.join(csv_folder_path, config.csv_file_name[s][c]),
                                   config.videos_and_video_statistics_header,
-                                  csv[s][c])
+                                  data[s][c])
             data_format.txt_saver(os.path.join(video_raw_folder_path, config.raw_file_name[s][c]), video_raw[s][c])
             data_format.txt_saver(os.path.join(video_statistics_raw_folder_path, config.raw_file_name[s][c]),
                                   video_statistics_raw[s][c])
@@ -62,16 +62,16 @@ def youtube_api_videos_and_videos_statistics():
 
 def youtube_api_comments():
     videos = dict()
-    csv = dict()
+    data = dict()
     raw = dict()
 
     for status in config.status:
         videos[status] = dict()
-        csv[status] = dict()
+        data[status] = dict()
         raw[status] = dict()
         for category in config.categories:
             videos[status][category] = []
-            csv[status][category] = []
+            data[status][category] = []
             raw[status][category] = []
 
     for status in config.status:
@@ -93,15 +93,15 @@ def youtube_api_comments():
             print('\n\n**********', s.upper(), c.upper(), '**********')
             for i in range(len(videos[s][c])):
                 c_csv, c_raw = youtube_api.comments(videos[s][c][i])
-                csv[s][c].extend(c_csv)
+                data[s][c].extend(c_csv)
                 raw[s][c].extend(c_raw)
 
             data_format.csv_saver(os.path.join(csv_folder_path, config.csv_file_name[s][c]), config.comments_header,
-                                  csv[s][c])
+                                  data[s][c])
             data_format.txt_saver(os.path.join(raw_folder_path, config.raw_file_name[s][c]), raw[s][c])
 
 
 if __name__ == '__main__':
     youtube_api_videos_and_videos_statistics()
     youtube_api_comments()
-    print('\n\n\nDONE!\n\n\n')
+    print('\n\n\nDONE!\n')
