@@ -6,7 +6,7 @@ import os
 
 config = Config()
 youtube_channel_statistics_scraper = YoutubeChannelStatisticsScrapper()
-data_format = DataFormatter()
+data_formatter = DataFormatter()
 
 
 def web_scrape_youtube_channel_statistics():
@@ -34,9 +34,9 @@ def web_scrape_youtube_channel_statistics():
         raw_folder_path = config.channel_statistics_html_folder_path[s]
         for c in config.categories:
             print('\n\n**********', s.upper(), c.upper(), '**********')
-            data_format.csv_saver(os.path.join(csv_folder_path, config.csv_file_name[s][c]),
-                                  config.channel_statistics_header, data[s][c])
-            data_format.txt_saver(os.path.join(raw_folder_path, config.raw_file_name[s][c]), raw[s][c])
+            data_formatter.csv_saver(os.path.join(csv_folder_path, config.csv_file_name[s][c]),
+                                     config.channel_statistics_header, data[s][c])
+            data_formatter.txt_saver(os.path.join(raw_folder_path, config.raw_file_name[s][c]), raw[s][c])
 
 
 if __name__ == '__main__':
