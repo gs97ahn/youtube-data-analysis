@@ -6,7 +6,7 @@ import time
 config = Config()
 
 
-class WebRequest:
+class WebRequester:
     def requester(self, target_address):
         cookies = config.cookies
         for request_attempt in config.request_sleep_secs:
