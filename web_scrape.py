@@ -10,18 +10,12 @@ data_format = DataFormatter()
 
 
 def web_scrape_youtube_channel_statistics():
-    data = dict()
-    raw = dict()
+    data, raw = dict(), dict()
     for s in config.status:
-        data[s] = dict()
-        raw[s] = dict()
-        for c in config.categories:
-            data[s][c] = list()
-            raw[s][c] = list()
-
-    for s in config.status:
+        data[s], raw[s] = dict(), dict()
         for c in config.categories:
             print('\n\n**********', s.upper(), c.upper(), '**********')
+            data[s][c], raw[s][c] = list(), list()
             d, r = youtube_channel_statistics_scraper.get_youtube_channels_statistics(c, s)
             data[s][c].extend(d)
             raw[s][c].extend(r)
