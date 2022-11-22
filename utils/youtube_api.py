@@ -1,9 +1,8 @@
-import googleapiclient.errors
-
 from config.config import Config
 from googleapiclient.discovery import build
 
 import json
+import googleapiclient.errors as err
 
 config = Config()
 
@@ -11,35 +10,34 @@ config = Config()
 class YoutubeApi:
     def videos(self, channel_id):
         youtube = build('youtube', 'v3', developerKey=config.api_key)
-        request = youtube.search().list(part='snippet',
-                                        channelId=channel_id,
-                                        maxResults='5',
-                                        order='date',
+        request = youtube.search().list(part='snippet', channelId=channel_id, maxResults='5', order='date',
                                         type='video')
-        search_response = request.execute()
+        v_response = request.execute()
 
-        videos_and_video_statistics = []
-        videos_raw_data = json.dumps(search_response, sort_keys=True, indent=4)
-        video_statistics_raw_data = ''
-        for video in range(len(search_response['items'])):
-            channel_id = search_response['items'][video]['snippet']['channelId']
-            video_id = search_response['items'][video]['id']['videoId']
-            title = search_response['items'][video]['snippet']['title']
-            published_at = search_response['items'][video]['snippet']['publishedAt']
-            thumbnail_url = search_response['items'][video]['snippet']['thumbnails']['high']['url']
+        v_and_vs = list()
+        v_raw = json.dumps(v_response, sort_keys=True, indent=4)
+        vs_raw = ''
+        for v in range(len(v_response['items'])):
+            channel_id = v_response['items'][v]['snippet']['channelId']
+            video_id = v_response['items'][v]['id']['videoId']
+            title = v_response['items'][v]['snippet']['title']
+            published_at = v_response['items'][v]['snippet']['publishedAt']
+            thumbnail_url = v_response['items'][v]['snippet']['thumbnails']['high']['url']
 
-            videos_response, raw = self.video_statistics(video_id)
-            video_statistics_raw_data += raw + '\n\n\n'
-            video_info = [channel_id, video_id, title, published_at, thumbnail_url, videos_response[0],
-                          videos_response[1], videos_response[2], videos_response[3]]
-            videos_and_video_statistics.append(video_info)
-            print(video_info)
-        return videos_and_video_statistics, videos_raw_data, video_statistics_raw_data
+            vs_response, raw = self.video_statistics(video_id)
+            vs_raw += raw + '\n\n\n'
+            vs = [channel_id, video_id, title, published_at, thumbnail_url, vs_response[0], vs_response[1],
+                  vs_response[2], vs_response[3]]
+            v_and_vs.append(vs)
+            print(vs)
+        return v_and_vs, v_raw, vs_raw
 
     def video_statistics(self, video_id):
         youtube = build('youtube', 'v3', developerKey=config.api_key)
         request = youtube.videos().list(part='statistics', id=video_id)
         response = request.execute()
+
+        raw = json.dumps(response, sort_keys=True, indent=4)
 
         comment_count = '0'
         if 'commentCount' in response['items'][0]['statistics']:
@@ -53,15 +51,17 @@ class YoutubeApi:
         view_count = '0'
         if 'viewCount' in response['items'][0]['statistics']:
             view_count = response['items'][0]['statistics']['viewCount']
-        videos_statistics = [comment_count, favorite_count, like_count, view_count]
-        return videos_statistics, json.dumps(response, sort_keys=True, indent=4)
+        vs = [comment_count, favorite_count, like_count, view_count]
+        return vs, raw
 
     def comments(self, video_id):
         youtube = build('youtube', 'v3', developerKey=config.api_key)
         request = youtube.commentThreads().list(part='snippet', videoId=video_id, maxResults='100', order='time')
+        raw = ''
         try:
             response = request.execute()
-        except googleapiclient.errors.HttpError as error:
+            raw = json.dumps(response, sort_keys=True, indent=4)
+        except err.HttpError as error:
             if error.reason == 'One or more of the requested comment threads cannot be retrieved due to insufficient ' \
                                'permissions. The request might not be properly authorized.':
                 print('ERROR: ' + video_id + ' insufficient permissions')
@@ -73,13 +73,12 @@ class YoutubeApi:
                 print('ERROR: ' + error.error_details)
                 exit(1)
 
-        comments_raw_data = json.dumps(response, sort_keys=True, indent=4)
-        comments = []
+        c = []
         for comment in range(len(response['items'])):
             author_name = response['items'][comment]['snippet']['topLevelComment']['snippet']['authorDisplayName']
             comment_text = response['items'][comment]['snippet']['topLevelComment']['snippet']['textOriginal']
             like_count = response['items'][comment]['snippet']['topLevelComment']['snippet']['likeCount']
             updated_at = response['items'][comment]['snippet']['topLevelComment']['snippet']['updatedAt']
-            comments.append([video_id, author_name, comment_text, like_count, updated_at])
-        print(comments)
-        return comments, comments_raw_data
+            c.append([video_id, author_name, comment_text, like_count, updated_at])
+        print(c)
+        return c, raw
