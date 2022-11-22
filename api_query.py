@@ -26,19 +26,19 @@ def youtube_api_videos_and_videos_statistics():
             video_statistics_raw[s][c] = list()
 
     for s in config.status:
+        for c in config.categories:
+            youtube_channels[s][c] = data_format.csv_reader(os.path.join(
+                config.channel_statistics_csv_folder_path[s], config.csv_file_name[s][c]
+            ))['channel id'].tolist()
+            print(youtube_channels[s][c])
+
+    for s in config.status:
         if not os.path.isdir(config.videos_json_folder_path[s]):
             os.makedirs(config.videos_json_folder_path[s])
         if not os.path.isdir(config.video_statistics_json_folder_path[s]):
             os.makedirs(config.video_statistics_json_folder_path[s])
         if not os.path.isdir(config.videos_and_video_statistics_csv_folder_path[s]):
             os.makedirs(config.videos_and_video_statistics_csv_folder_path[s])
-
-    for s in config.status:
-        for c in config.categories:
-            youtube_channels[s][c] = data_format.csv_reader(os.path.join(
-                config.channel_statistics_csv_folder_path[s], config.csv_file_name[s][c]
-            ))['channel id'].tolist()
-            print(youtube_channels[s][c])
 
     for s in config.status:
         csv_folder_path = config.videos_and_video_statistics_csv_folder_path[s]
