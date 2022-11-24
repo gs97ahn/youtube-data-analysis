@@ -19,9 +19,8 @@ def youtube_api_videos_and_videos_statistics():
         for c in config.categories:
             youtube_channels[s][c] = list()
             youtube_channels[s][c] = data_format.csv_reader(os.path.join(
-                config.channel_statistics_csv_folder_path[s], config.csv_file_name[s][c]
+                config.channel_statistics_csv_folder_path[s], config.csv_filename[s][c]
             ))['channel id'].tolist()
-            print(youtube_channels[s][c])
 
     data, video_raw, video_statistics_raw = dict(), dict(), dict()
     for s in config.status:
@@ -38,11 +37,11 @@ def youtube_api_videos_and_videos_statistics():
                 video_raw[s][c].extend(v_raw)
                 video_statistics_raw[s][c].extend(vs_raw)
 
-            data_format.csv_saver(os.path.join(csv_folder_path, config.csv_file_name[s][c]),
+            data_format.csv_saver(os.path.join(csv_folder_path, config.csv_filename[s][c]),
                                   config.videos_and_video_statistics_header,
                                   data[s][c])
-            data_format.txt_saver(os.path.join(video_raw_folder_path, config.raw_file_name[s][c]), video_raw[s][c])
-            data_format.txt_saver(os.path.join(video_statistics_raw_folder_path, config.raw_file_name[s][c]),
+            data_format.txt_saver(os.path.join(video_raw_folder_path, config.raw_filename[s][c]), video_raw[s][c])
+            data_format.txt_saver(os.path.join(video_statistics_raw_folder_path, config.raw_filename[s][c]),
                                   video_statistics_raw[s][c])
 
 
@@ -53,8 +52,7 @@ def youtube_api_comments():
         for c in config.categories:
             videos[s][c] = list()
             videos[s][c] = data_format.csv_reader(os.path.join(config.videos_and_video_statistics_csv_folder_path[s],
-                                                               config.csv_file_name[s][c]))['video id'].tolist()
-            print(videos[s][c])
+                                                               config.csv_filename[s][c]))['video id'].tolist()
 
     make_folders([config.comments_json_folder_path, config.comments_csv_folder_path])
 
@@ -71,9 +69,9 @@ def youtube_api_comments():
                 data[s][c].extend(c_csv)
                 raw[s][c].extend(c_raw)
 
-            data_format.csv_saver(os.path.join(csv_folder_path, config.csv_file_name[s][c]), config.comments_header,
+            data_format.csv_saver(os.path.join(csv_folder_path, config.csv_filename[s][c]), config.comments_header,
                                   data[s][c])
-            data_format.txt_saver(os.path.join(raw_folder_path, config.raw_file_name[s][c]), raw[s][c])
+            data_format.txt_saver(os.path.join(raw_folder_path, config.raw_filename[s][c]), raw[s][c])
 
 
 def make_folders(folder_path_list):
