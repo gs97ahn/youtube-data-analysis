@@ -10,7 +10,7 @@ import pandas as pd
 import datetime
 import time
 
-# nltk.download('all')
+nltk.download('all')
 config = Config()
 data_formatter = DataFormatter()
 data_preprocessor = DataPreprocessor()
@@ -21,7 +21,7 @@ def get_comment_data():
     comments = dict()
     data_a, data_1w, data_2w = dict(), dict(), dict()
     for s in config.status:
-        filenames[s] = os.listdir(config.comments_csv_folder_path[s])
+        filenames[s] = os.listdir(config.cdata_comments_csv_folder_path[s])
         comments[s] = dict()
         data_a[s], data_1w[s], data_2w[s] = dict(), dict(), dict()
         for c in config.categories:
@@ -47,7 +47,7 @@ def get_comment_data():
                             data_2w[s][c].append(r[1]['comment text'])
                     if null_error_cnt != 0:
                         print('ERROR: Found', null_error_cnt, 'null updated date')
-            data_a[s][c].extend(comments[s][c][config.comments_header[2]].tolist())
+            data_a[s][c].extend(comments[s][c][config.cdata_comments_header[2]].tolist())
     return [data_a, data_1w, data_2w]
 
 
