@@ -118,38 +118,40 @@ class Config:
         # Image Filename
         self.img_filename = {
             self.status[0]: {
-                self.categories[0]: 'gaming_category.png',
-                self.categories[1]: 'science_and_technology_category.png',
-                self.categories[2]: 'entertainment_category.png',
-                self.categories[3]: 'travel_and_events_category.png',
-                self.categories[4]: 'how_to_and_style_category.png',
-                self.categories[5]: 'autos_and_vehicles_category.png'
+                self.categories[0]: 'gaming_category_*.png',
+                self.categories[1]: 'science_and_technology_category_*.png',
+                self.categories[2]: 'entertainment_category_*.png',
+                self.categories[3]: 'travel_and_events_category_*.png',
+                self.categories[4]: 'how_to_and_style_category_*.png',
+                self.categories[5]: 'autos_and_vehicles_category_*.png'
             },
             self.status[1]: {
-                self.categories[0]: 'gaming_category.png',
-                self.categories[1]: 'science_and_technology_category.png',
-                self.categories[2]: 'entertainment_category.png',
-                self.categories[3]: 'travel_and_events_category.png',
-                self.categories[4]: 'how_to_and_style_category.png',
-                self.categories[5]: 'autos_and_vehicles_category.png'
+                self.categories[0]: 'gaming_category_*.png',
+                self.categories[1]: 'science_and_technology_category_*.png',
+                self.categories[2]: 'entertainment_category_*.png',
+                self.categories[3]: 'travel_and_events_category_*.png',
+                self.categories[4]: 'how_to_and_style_category_*.png',
+                self.categories[5]: 'autos_and_vehicles_category_*.png'
             }
         }
 
-        # # # Web Scraping Data Related
+        # # # Collected Data
+        self.cdata_parent_folder_path = self.data_parent_folder_path + 'collected/'
+
         # # Channel Statistics
         # Raw - HTML
-        self.channel_statistics_html_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'raw/channel_statistics_html/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'raw/channel_statistics_html/' + self.status[1] + '/'
+        self.cdata_channel_statistics_html_folder_path = {
+            self.status[0]: self.cdata_parent_folder_path + 'raw/channel_statistics_html/' + self.status[0] + '/',
+            self.status[1]: self.cdata_parent_folder_path + 'raw/channel_statistics_html/' + self.status[1] + '/'
         }
 
         # CSV
-        self.channel_statistics_csv_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'channel_statistics/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'channel_statistics/' + self.status[1] + '/'
+        self.cdata_channel_statistics_csv_folder_path = {
+            self.status[0]: self.cdata_parent_folder_path + 'channel_statistics/' + self.status[0] + '/',
+            self.status[1]: self.cdata_parent_folder_path + 'channel_statistics/' + self.status[1] + '/'
         }
-        self.channel_statistics_header = ['rank', 'channel name', 'current subscriber', 'subscriber change rate',
-                                          'average views', 'views change rate', 'channel id']
+        self.cdata_channel_statistics_header = ['rank', 'channel name', 'current subscriber', 'subscriber change rate',
+                                                'average views', 'views change rate', 'channel id']
 
         # # # API Related
         # API Key
@@ -157,42 +159,42 @@ class Config:
 
         # # Videos
         # Raw - JSON
-        self.videos_json_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/'
+        self.cdata_videos_json_folder_path = {
+            self.status[0]: self.cdata_parent_folder_path + 'raw/videos_json/' + self.status[0] + '/',
+            self.status[1]: self.cdata_parent_folder_path + 'raw/videos_json/' + self.status[1] + '/'
         }
 
         # # Video Statistics
         # Raw - JSON
-        self.video_statistics_json_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/'
+        self.cdata_video_statistics_json_folder_path = {
+            self.status[0]: self.cdata_parent_folder_path + 'raw/video_statistics_json/' + self.status[0] + '/',
+            self.status[1]: self.cdata_parent_folder_path + 'raw/video_statistics_json/' + self.status[1] + '/'
         }
 
         # # Video & Video Statistics
         # CSV
-        self.videos_and_video_statistics_csv_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'videos_and_video_statistics/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'videos_and_video_statistics/' + self.status[1] + '/'
+        self.cdata_videos_and_video_statistics_csv_folder_path = {
+            self.status[0]: self.cdata_parent_folder_path + 'videos_and_video_statistics/' + self.status[0] + '/',
+            self.status[1]: self.cdata_parent_folder_path + 'videos_and_video_statistics/' + self.status[1] + '/'
         }
-        self.videos_and_video_statistics_header = ['channel id', 'video id', 'title', 'published at', 'thumbnail url',
-                                                   'comment count', 'favorite count', 'like count', 'view count']
+        self.cdata_videos_and_video_statistics_header = ['channel id', 'video id', 'title', 'published at',
+                                                         'thumbnail url', 'comment count', 'favorite count', 'like count', 'view count']
 
         # # Comments
         # JSON
-        self.comments_json_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/'
+        self.cdata_comments_json_folder_path = {
+            self.status[0]: self.cdata_parent_folder_path + 'raw/comments_json/' + self.status[0] + '/',
+            self.status[1]: self.cdata_parent_folder_path + 'raw/comments_json/' + self.status[1] + '/'
         }
 
         # CSV
-        self.comments_csv_folder_path = {
-            self.status[0]: self.data_parent_folder_path + 'comments/' + self.status[0] + '/',
-            self.status[1]: self.data_parent_folder_path + 'comments/' + self.status[1] + '/'
+        self.cdata_comments_csv_folder_path = {
+            self.status[0]: self.cdata_parent_folder_path + 'comments/' + self.status[0] + '/',
+            self.status[1]: self.cdata_parent_folder_path + 'comments/' + self.status[1] + '/'
         }
 
         # CSV Header
-        self.comments_header = ['video id', 'author name', 'comment text', 'like count', 'updated at']
+        self.cdata_comments_header = ['video id', 'author name', 'comment text', 'like count', 'updated at']
 
         # # # Preprocessed Data
         # # CSV
@@ -223,12 +225,10 @@ class Config:
                 self.pdata_type[1][1]: {  # Ratio
                     self.status[0]: self.pdata_parent_folder_path + 'all_nodup_ratio/' + self.status[0] + '/',
                     self.status[1]: self.pdata_parent_folder_path + 'all_nodup_ratio/' + self.status[1] + '/'
-
                 },
                 self.pdata_type[1][2]: {  # Z-Score
                     self.status[0]: self.pdata_parent_folder_path + 'all_nodup_zscore/' + self.status[0] + '/',
                     self.status[1]: self.pdata_parent_folder_path + 'all_nodup_zscore/' + self.status[1] + '/'
-
                 }
             }
         }
@@ -257,12 +257,10 @@ class Config:
                 self.pdata_type[1][1]: {  # Ratio
                     self.status[0]: self.pdata_parent_folder_path + '1w_nodup_ratio/' + self.status[0] + '/',
                     self.status[1]: self.pdata_parent_folder_path + '1w_nodup_ratio/' + self.status[1] + '/'
-
                 },
                 self.pdata_type[1][2]: {  # Z-Score
                     self.status[0]: self.pdata_parent_folder_path + '1w_nodup_zscore/' + self.status[0] + '/',
                     self.status[1]: self.pdata_parent_folder_path + '1w_nodup_zscore/' + self.status[1] + '/'
-
                 }
             }
         }
@@ -307,58 +305,102 @@ class Config:
         }
 
         # # # Data Visualization
+        # # PNG
+        self.vdata_type = ['wordcloud', 'h-bar', 'v-bar']
         self.vdata_parent_folder_path = self.data_parent_folder_path + 'visual/'
 
-        # Word Cloud
-        self.wordcloud_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'wordcloud/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'wordcloud/' + self.status[1] + '/'
-        }
-        self.date_relevant_wordcloud_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'date_relevant_wordcloud/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'date_relevant_wordcloud/' + self.status[1] + '/'
-        }
-        self.z_score_wordcloud_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'z_score_wordcloud/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'z_score_wordcloud/' + self.status[1] + '/'
-        }
-        self.z_score_date_relevant_wordcloud_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'z_score_date_relevant_wordcloud/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'z_score_date_relevant_wordcloud/' + self.status[1] + '/'
-        }
-
-        # Horizontal Bar Graph
-        self.horizontal_bar_graph_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'h_bar_graph/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'h_bar_graph/' + self.status[1] + '/'
-        }
-        self.date_relevant_horizontal_bar_graph_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'date_relevant_h_bar_graph/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'date_relevant_h_bar_graph/' + self.status[1] + '/'
-        }
-        self.z_score_horizontal_bar_graph_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'z_score_h_bar_graph/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'z_score_h_bar_graph/' + self.status[1] + '/'
-        }
-        self.z_score_date_relevant_horizontal_bar_graph_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'z_score_date_relevant_h_bar_graph/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'z_score_date_relevant_h_bar_graph/' + self.status[1] + '/'
+        # All
+        self.vdata_all_png_folder_path = {
+            self.pdata_type[0][0]: {  # Duplicate
+                self.pdata_type[1][0]: {  # Count
+                    self.status[0]: self.vdata_parent_folder_path + 'all_dup_count/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + 'all_dup_count/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][1]: {  # Ratio
+                    self.status[0]: self.vdata_parent_folder_path + 'all_dup_ratio/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + 'all_dup_ratio/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][2]: {  # Z-Score
+                    self.status[0]: self.vdata_parent_folder_path + 'all_dup_zscore/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + 'all_dup_zscore/' + self.status[1] + '/'
+                }
+            },
+            self.pdata_type[0][1]: {  # No Duplicate
+                self.pdata_type[1][0]: {  # Count
+                    self.status[0]: self.vdata_parent_folder_path + 'all_nodup_count/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + 'all_nodup_count/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][1]: {  # Ratio
+                    self.status[0]: self.vdata_parent_folder_path + 'all_nodup_ratio/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + 'all_nodup_ratio/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][2]: {  # Z-Score
+                    self.status[0]: self.vdata_parent_folder_path + 'all_nodup_zscore/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + 'all_nodup_zscore/' + self.status[1] + '/'
+                }
+            }
         }
 
-        # Scatter Graph
-        self.scatter_graph_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'scatter_graph/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'scatter_graph/' + self.status[1] + '/'
+        # 0 Week - 1 Week
+        self.vdata_1w_png_folder_path = {
+            self.pdata_type[0][0]: {  # Duplicate
+                self.pdata_type[1][0]: {  # Count
+                    self.status[0]: self.vdata_parent_folder_path + '1w_dup_count/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '1w_dup_count/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][1]: {  # Ratio
+                    self.status[0]: self.vdata_parent_folder_path + '1w_dup_ratio/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '1w_dup_ratio/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][2]: {  # Z-Score
+                    self.status[0]: self.vdata_parent_folder_path + '1w_dup_zscore/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '1w_dup_zscore/' + self.status[1] + '/'
+                }
+            },
+            self.pdata_type[0][1]: {  # No Duplicate
+                self.pdata_type[1][0]: {  # Count
+                    self.status[0]: self.vdata_parent_folder_path + '1w_nodup_count/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '1w_nodup_count/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][1]: {  # Ratio
+                    self.status[0]: self.vdata_parent_folder_path + '1w_nodup_ratio/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '1w_nodup_ratio/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][2]: {  # Z-Score
+                    self.status[0]: self.vdata_parent_folder_path + '1w_nodup_zscore/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '1w_nodup_zscore/' + self.status[1] + '/'
+                }
+            }
         }
-        self.date_relevant_scatter_graph_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'date_relevant_scatter_graph/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'date_relevant_scatter_graph/' + self.status[1] + '/'
-        }
-        self.z_score_horizontal_scatter_graph_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'z_score_scatter_graph/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'z_score_scatter_graph/' + self.status[1] + '/'
-        }
-        self.z_score_date_relevant_scatter_graph_png_folder_path = {
-            self.status[0]: self.vdata_parent_folder_path + 'z_score_date_relevant_scatter_graph/' + self.status[0] + '/',
-            self.status[1]: self.vdata_parent_folder_path + 'z_score_date_relevant_scatter_graph/' + self.status[1] + '/'
+
+        # 1 Week - 2 Week
+        self.vdata_2w_png_folder_path = {
+            self.pdata_type[0][0]: {  # Duplicate
+                self.pdata_type[1][0]: {  # Count
+                    self.status[0]: self.vdata_parent_folder_path + '2w_dup_count/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '2w_dup_count/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][1]: {  # Ratio
+                    self.status[0]: self.vdata_parent_folder_path + '2w_dup_ratio/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '2w_dup_ratio/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][2]: {  # Z-Score
+                    self.status[0]: self.vdata_parent_folder_path + '2w_dup_zscore/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '2w_dup_zscore/' + self.status[1] + '/'
+                }
+            },
+            self.pdata_type[0][1]: {  # No Duplicate
+                self.pdata_type[1][0]: {  # Count
+                    self.status[0]: self.vdata_parent_folder_path + '2w_nodup_count/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '2w_nodup_count/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][1]: {  # Ratio
+                    self.status[0]: self.vdata_parent_folder_path + '2w_nodup_ratio/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '2w_nodup_ratio/' + self.status[1] + '/'
+                },
+                self.pdata_type[1][2]: {  # Z-Score
+                    self.status[0]: self.vdata_parent_folder_path + '2w_nodup_zscore/' + self.status[0] + '/',
+                    self.status[1]: self.vdata_parent_folder_path + '2w_nodup_zscore/' + self.status[1] + '/'
+                }
+            }
         }
