@@ -9,9 +9,16 @@ youtube_api = YoutubeApi()
 data_format = DataFormatter()
 
 
+def make_folders(folder_path_list):
+    for folder_path in folder_path_list:
+        for s in config.status:
+            if not os.path.isdir(folder_path[s]):
+                os.makedirs(folder_path[s])
+
+
 def youtube_api_videos_and_videos_statistics():
-    make_folders([config.videos_json_folder_path, config.video_statistics_json_folder_path,
-                  config.videos_and_video_statistics_csv_folder_path])
+    make_folders([config.cdata_videos_json_folder_path, config.cdata_video_statistics_json_folder_path,
+                  config.cdata_videos_and_video_statistics_csv_folder_path])
 
     youtube_channels = dict()
     for s in config.status:
@@ -19,15 +26,15 @@ def youtube_api_videos_and_videos_statistics():
         for c in config.categories:
             youtube_channels[s][c] = list()
             youtube_channels[s][c] = data_format.csv_reader(os.path.join(
-                config.channel_statistics_csv_folder_path[s], config.csv_filename[s][c]
+                config.cdata_channel_statistics_csv_folder_path[s], config.csv_filename[s][c]
             ))['channel id'].tolist()
 
     data, video_raw, video_statistics_raw = dict(), dict(), dict()
     for s in config.status:
         data[s], video_raw[s], video_statistics_raw[s] = dict(), dict(), dict()
-        csv_folder_path = config.videos_and_video_statistics_csv_folder_path[s]
-        video_raw_folder_path = config.videos_json_folder_path[s]
-        video_statistics_raw_folder_path = config.video_statistics_json_folder_path[s]
+        csv_folder_path = config.cdata_videos_and_video_statistics_csv_folder_path[s]
+        video_raw_folder_path = config.cdata_videos_json_folder_path[s]
+        video_statistics_raw_folder_path = config.cdata_video_statistics_json_folder_path[s]
         for c in config.categories:
             print('\n\n**********', s.upper(), c.upper(), '**********')
             data[s][c], video_raw[s][c], video_statistics_raw[s][c] = list(), list(), list()
@@ -38,7 +45,7 @@ def youtube_api_videos_and_videos_statistics():
                 video_statistics_raw[s][c].extend(vs_raw)
 
             data_format.csv_saver(os.path.join(csv_folder_path, config.csv_filename[s][c]),
-                                  config.videos_and_video_statistics_header,
+                                  config.cdata_videos_and_video_statistics_header,
                                   data[s][c])
             data_format.txt_saver(os.path.join(video_raw_folder_path, config.raw_filename[s][c]), video_raw[s][c])
             data_format.txt_saver(os.path.join(video_statistics_raw_folder_path, config.raw_filename[s][c]),
@@ -51,16 +58,18 @@ def youtube_api_comments():
         videos[s] = dict()
         for c in config.categories:
             videos[s][c] = list()
-            videos[s][c] = data_format.csv_reader(os.path.join(config.videos_and_video_statistics_csv_folder_path[s],
-                                                               config.csv_filename[s][c]))['video id'].tolist()
+            videos[s][c] = data_format.csv_reader(os.path.join(
+                config.cdata_videos_and_video_statistics_csv_folder_path[s],
+                config.csv_filename[s][c])
+            )['video id'].tolist()
 
-    make_folders([config.comments_json_folder_path, config.comments_csv_folder_path])
+    make_folders([config.cdata_comments_json_folder_path, config.cdata_comments_csv_folder_path])
 
     data, raw = dict(), dict()
     for s in config.status:
         data[s], raw[s] = dict(), dict()
-        csv_folder_path = config.comments_csv_folder_path[s]
-        raw_folder_path = config.comments_json_folder_path[s]
+        csv_folder_path = config.cdata_comments_csv_folder_path[s]
+        raw_folder_path = config.cdata_comments_json_folder_path[s]
         for c in config.categories:
             print('\n\n**********', s.upper(), c.upper(), '**********')
             data[s][c], raw[s][c] = list(), list()
@@ -72,13 +81,6 @@ def youtube_api_comments():
             data_format.csv_saver(os.path.join(csv_folder_path, config.csv_filename[s][c]), config.comments_header,
                                   data[s][c])
             data_format.txt_saver(os.path.join(raw_folder_path, config.raw_filename[s][c]), raw[s][c])
-
-
-def make_folders(folder_path_list):
-    for folder_path in folder_path_list:
-        for s in config.status:
-            if not os.path.isdir(folder_path[s]):
-                os.makedirs(folder_path[s])
 
 
 if __name__ == '__main__':
