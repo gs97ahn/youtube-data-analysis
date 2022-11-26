@@ -39,7 +39,7 @@ python api_query.py
 ```
 
 ### 3️⃣ Preprocess
-Preprocess data by doing the following:
+Preprocess data by doing the followings:
 
 - Tokenize comments
 - Remove punctuation
@@ -47,8 +47,20 @@ Preprocess data by doing the following:
 - Remove stopwords
 - Extract word stem
 - Count words
+- Ratio
+- Z-Score
 
 ```
-python ./preprocess_data.py
+python preprocess_data.py
 ```
 
+### 5️⃣ Visualization
+Visualize data by the followings:
+
+- Wordcloud
+- Horizontal Bar Graph
+- Bar Graph
+
+```
+python visualize.py
+```
