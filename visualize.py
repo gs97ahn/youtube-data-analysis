@@ -1,11 +1,8 @@
-import pandas as pd
-
 from utils.data_formatter import DataFormatter
 from utils.visualizer import Visualizer
 from config.config import Config
 
 import os
-import operator
 import datetime
 
 data_format = DataFormatter()
