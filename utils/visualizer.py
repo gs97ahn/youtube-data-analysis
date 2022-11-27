@@ -8,44 +8,71 @@ config = Config()
 
 class Visualizer:
     def word_cloud(self, data, filename_with_path):
-        wc = WordCloud(background_color='white', max_words=1000)
+        wc = WordCloud(background_color='white', max_words=100)
         wc = wc.generate_from_frequencies(data)
         plt.figure(figsize=(8, 6))
         plt.imshow(wc, interpolation='bilinear')
         plt.axis('off')
-        # plt.savefig(filename_with_path)
+        plt.savefig(filename_with_path)
         plt.show()
 
-    def horizontal_bar_graph(self, data, title, filename_with_path):
-        pos_y = list()
-        neg_y = list()
-        x = list()
-        for status in config.status:
-            for category in config.categories:
-                if category in title and status in title:
-                    x.extend(data[status][category][status]['keys'])
-                    pos_y.extend(data[status][category][status]['values'])
-                elif category in title and status not in title:
-                    if status == config.status[0]:
-                        neg_y.extend(data[config.status[1]][category][config.status[0]]['values'])
-                    elif status == config.status[1]:
-                        neg_y.extend(data[config.status[0]][category][config.status[1]]['values'])
-                    sign_alter = list()
-                    for i in neg_y:
-                        sign_alter.append(-i)
-                    neg_y = sign_alter
+    def scatter_graph(self, data, title, filename_with_path):
+        plt.style.use('ggplot')
+        plt.figure(figsize=(10, 6))
+        plt.title(title.replace('_', ' ').upper())
+        plt.scatter(data[config.graph[0]], data[config.graph[1]])
+        self.text_in_graph(data[config.graph[0]], data[config.graph[1]], data[config.graph[2]])
+        if config.status[0] in title:
+            plt.xlabel(config.status[0])
+            plt.ylabel(config.status[1])
+        else:
+            plt.xlabel(config.status[1])
+            plt.ylabel(config.status[0])
+        plt.savefig(filename_with_path)
+        plt.show()
+
+    def text_in_graph(self, x, y, texts):
+        for i in range(len(texts)):
+            plt.text(x=x.iloc[i], y=y.iloc[i], s=texts.iloc[i], fontdict=dict(size=10))
+
+    def count_horizontal_bar_graph(self, data, title, filename_with_path):
         plt.style.use('ggplot')
         plt.figure(figsize=(10, 6))
         plt.rcParams['axes.unicode_minus'] = False
-        plt.title(title.replace('_', ' ').capitalize())
+        plt.rcParams['ytick.labelsize'] = 7
+        plt.title(title.replace('_', ' ').upper())
         if config.status[0] in title:
-            plt.barh(x, pos_y, label=config.status[0])
-            plt.barh(x, neg_y, label=config.status[1])
+            plt.barh(data[config.graph[2]], data[config.graph[0]], label=config.status[0])
+            plt.barh(data[config.graph[2]], data[config.graph[1]], label=config.status[1])
         else:
-            plt.barh(x, neg_y, label=config.status[0])
-            plt.barh(x, pos_y, label=config.status[1])
+            plt.barh(data['word'], data['count'], label=config.status[1])
+            plt.barh(data['word'], data['inverse count'], label=config.status[0])
         plt.xlabel('Frequency')
         plt.ylabel('Word')
         plt.legend()
-        # plt.savefig(filename_with_path)
+        plt.savefig(filename_with_path)
+        plt.show()
+
+    def ratio_horizontal_bar_graph(self, data, title, filename_with_path):
+        plt.style.use('ggplot')
+        plt.figure(figsize=(10, 6))
+        plt.rcParams['axes.unicode_minus'] = False
+        plt.rcParams['ytick.labelsize'] = 7
+        plt.title(title.replace('_', ' ').upper())
+        plt.barh(data[config.graph[2]], data[config.graph[3]])
+        plt.xlabel('Ratio')
+        plt.ylabel('Word')
+        plt.savefig(filename_with_path)
+        plt.show()
+
+    def z_score_horizontal_bar_graph(self, data, title, filename_with_path):
+        plt.style.use('ggplot')
+        plt.figure(figsize=(10, 6))
+        plt.rcParams['axes.unicode_minus'] = False
+        plt.rcParams['ytick.labelsize'] = 7
+        plt.title(title.replace('_', ' ').upper())
+        plt.barh(data[config.graph[2]], data[config.graph[4]])
+        plt.xlabel('Z-Score')
+        plt.ylabel('Word')
+        plt.savefig(filename_with_path)
         plt.show()
