@@ -178,7 +178,6 @@ if __name__ == '__main__':
             print('**********', d_type, dup_opt.upper(), config.pdata_type[1][0].upper(), '**********')
             print('**********************************************')
             print('**********************************************')
-            print()
             d_c = count(d_list[i], dup_opt)
             save_data_file(d_c, f_path[dup_opt][config.pdata_type[1][0]], config.pdata_type[1][0])
             d_r = ratio(d_c, data_len_list)
