@@ -178,7 +178,8 @@ class Config:
             self.status[1]: self.cdata_parent_folder_path + 'videos_and_video_statistics/' + self.status[1] + '/'
         }
         self.cdata_videos_and_video_statistics_header = ['channel id', 'video id', 'title', 'published at',
-                                                         'thumbnail url', 'comment count', 'favorite count', 'like count', 'view count']
+                                                         'thumbnail url', 'comment count', 'favorite count',
+                                                         'like count', 'view count']
 
         # # Comments
         # JSON
@@ -306,7 +307,9 @@ class Config:
 
         # # # Data Visualization
         # # PNG
-        self.vdata_type = ['wordcloud', 'h-bar', 'v-bar']
+        self.vdata_type = ['word_cloud', 'scatter', 'h_bar', 'v_bar']
+        self.graph = ['count', 'inverse count', 'word', 'ratio', 'z-score']
+        self.vdata_period = ['all', '1week', '2week']
         self.vdata_parent_folder_path = self.data_parent_folder_path + 'visual/'
 
         # All
