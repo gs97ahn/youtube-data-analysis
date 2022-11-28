@@ -78,8 +78,8 @@ def youtube_api_comments():
                 data[s][c].extend(c_csv)
                 raw[s][c].extend(c_raw)
 
-            data_format.csv_saver(os.path.join(csv_folder_path, config.csv_filename[s][c]), config.comments_header,
-                                  data[s][c])
+            data_format.csv_saver(os.path.join(csv_folder_path, config.csv_filename[s][c]),
+                                  config.cdata_comments_header, data[s][c])
             data_format.txt_saver(os.path.join(raw_folder_path, config.raw_filename[s][c]), raw[s][c])
 
 
