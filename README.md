@@ -17,6 +17,16 @@ Many dream of becoming a famous Youtuber these days. Youtube contents itself, fo
 However, Youtube users writing comments also influence a channel's popularity. Therefore, this project analyze top 30 
 popularity increase and decrease channels and compare the comments during the increase and decrease period.
 
+### Category
+Since the comments may vary drastically depending on which category the youtubers are in, the Youtube channels are split
+into six different categories which are:
+- Autos & Vehicles
+- Entertainment
+- Gaming
+- How to & Style
+- Science & Technology
+- Travel & Events
+
 ## How it Works
 ### 0️⃣ Dependency Installation
 
@@ -59,7 +69,7 @@ Visualize data by the followings:
 
 - Wordcloud
 - Horizontal Bar Graph
-- Bar Graph
+- Vertical Bar Graph
 
 ```
 python visualize.py
