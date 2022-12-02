@@ -1,6 +1,6 @@
 # data file
-*.txt
-*.csv
+data/
 
 ### PyCharm ###
 .idea
+__pycache__/
