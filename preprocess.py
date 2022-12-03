@@ -2,7 +2,6 @@ from config.config import Config
 from utils.data_formatter import DataFormatter
 from utils.data_preprocessor import DataPreprocessor
 from tqdm import tqdm
-from datetime import datetime
 
 import os
 import nltk
@@ -31,11 +30,15 @@ def get_comment_data():
             for f in filenames[s]:
                 if f.startswith(c):
                     comments[s][c] = pd.concat([
-                        comments[s][c], data_formatter.csv_reader(os.path.join(config.comments_csv_folder_path[s], f))
+                        comments[s][c], data_formatter.csv_reader(
+                            os.path.join(config.cdata_comments_csv_folder_path[s], f)
+                        )
                     ])
                     date = get_date_from_filename(f, '.csv')
                     null_error_cnt = 0
-                    for r in data_formatter.csv_reader(os.path.join(config.comments_csv_folder_path[s], f)).iterrows():
+                    for r in data_formatter.csv_reader(
+                            os.path.join(config.cdata_comments_csv_folder_path[s], f)
+                    ).iterrows():
                         try:
                             comment_date = get_date_from_comment(r, 'T')
                         except AttributeError:
@@ -83,12 +86,12 @@ def dict_to_2d_list(dict_data):
 
 
 def count_cycle(data, token_function_option):
-    data = data_preprocessor.tokenize(data, token_function_option)
-    data = data_preprocessor.punctuation(data)
-    data = data_preprocessor.english(data)
-    data = data_preprocessor.stopwords(data)
-    data = data_preprocessor.word_stem(data)
-    data = data_preprocessor.word_count(data)
+    data = data_preprocessor.tokenize(data, token_function_option, True)
+    data = data_preprocessor.punctuation(data, True)
+    data = data_preprocessor.english(data, True)
+    data = data_preprocessor.stopwords(data, True)
+    data = data_preprocessor.word_stem(data, True)
+    data = data_preprocessor.word_count(data, True)
     return data
 
 
