@@ -6,4 +6,3 @@ nltk
 tqdm
 wordcloud
 matplotlib
-scipy
